@@ -6,6 +6,8 @@ import {
   selectIsLoading,
   selectError,
 } from "../../redux/selectors";
+import CarItem from "../CarItem/CarItem";
+import css from "./CarsList.module.css";
 
 const CarsList = () => {
   const dispatch = useDispatch();
@@ -19,14 +21,12 @@ const CarsList = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className={css.container}>
       {isLoading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
-      <ul>
+      <ul className={css.carslist}>
         {filteredCars.map((car) => (
-          <li key={car.id}>
-            {car.make} {car.model} - {car.rentalPrice}
-          </li>
+          <CarItem key={car.id} car={car} />
         ))}
       </ul>
     </div>

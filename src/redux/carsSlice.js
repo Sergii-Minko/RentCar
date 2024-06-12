@@ -34,7 +34,7 @@ const carsSlice = createSlice({
     error: null,
     filters: {
       make: "",
-      maxPrice: 10000,
+      maxPrice: 0,
       minMileage: 0,
       maxMileage: 0,
     },
@@ -86,7 +86,7 @@ function applyFilters(state) {
     const matchesMake = make
       ? car.make.toLowerCase().includes(make.toLowerCase())
       : true;
-    const matchesPrice = carPrice <= maxPrice;
+    const matchesPrice = maxPrice === 0 || carPrice <= maxPrice;
     const matchesMileage =
       (maxMileage === 0 || carMileage <= maxMileage) &&
       (minMileage === 0 || carMileage >= minMileage);

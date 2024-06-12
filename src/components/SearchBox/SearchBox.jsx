@@ -13,6 +13,8 @@ import {
   selectMaxMileage,
 } from "../../redux/selectors";
 
+import css from "./SearchBox.module.css";
+
 import makes from "../../Data/makes";
 
 const SearchBox = () => {
@@ -46,10 +48,14 @@ const SearchBox = () => {
   };
 
   return (
-    <div>
-      <label>
+    <div className={css.container}>
+      <label className={css.lable}>
         Car Brand:
-        <select value={makeFilter} onChange={handleMakeChange}>
+        <select
+          className={css.selectMake}
+          value={makeFilter}
+          onChange={handleMakeChange}
+        >
           <option value="">All</option>
           {makes.map((make, index) => (
             <option key={index} value={make}>
@@ -58,9 +64,10 @@ const SearchBox = () => {
           ))}
         </select>
       </label>
-      <label>
+      <label className={css.lable}>
         Price/ 1 hour:
         <select
+          className={css.selectPrice}
           value={priceRangeFilter.maxPrice}
           onChange={(e) => handleMaxPriceChange(Number(e.target.value))}
         >
@@ -72,25 +79,29 @@ const SearchBox = () => {
           ))}
         </select>
       </label>
-      <div>
-        <label>
-          Car mileage/km:
+      <div className={css.inputsContainer}>
+        <div className={css.inputs}>
+          <label className={css.lable}>
+            Car mileage/km:
+            <input
+              className={css.inputMileageLeft}
+              type="number"
+              value={
+                mileageRangeFilter.minMileage === 0
+                  ? 0
+                  : mileageRangeFilter.minMileage
+              }
+              onChange={(e) =>
+                handleMileageRangeChange(
+                  e.target.value ? Number(e.target.value) : 0,
+                  mileageRangeFilter.maxMileage
+                )
+              }
+              placeholder="From"
+            />
+          </label>
           <input
-            type="number"
-            value={
-              mileageRangeFilter.minMileage === 0
-                ? 0
-                : mileageRangeFilter.minMileage
-            }
-            onChange={(e) =>
-              handleMileageRangeChange(
-                e.target.value ? Number(e.target.value) : 0,
-                mileageRangeFilter.maxMileage
-              )
-            }
-            placeholder="From"
-          />
-          <input
+            className={css.inputMileageRight}
             type="number"
             value={
               mileageRangeFilter.maxMileage === 0
@@ -105,8 +116,10 @@ const SearchBox = () => {
             }
             placeholder="To"
           />
-        </label>
-        <button onClick={applyFilters}>Apply</button>
+        </div>
+        <button className={css.searchButton} onClick={applyFilters}>
+          Search
+        </button>
       </div>
     </div>
   );
