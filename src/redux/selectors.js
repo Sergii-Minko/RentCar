@@ -24,6 +24,14 @@ export const selectPriceRangeFilter = createSelector(
   })
 );
 
+export const selectMileageRangeFilter = createSelector(
+  [selectCarsState],
+  (carsState) => ({
+    minMileage: carsState.filters.minMileage,
+    maxMileage: carsState.filters.maxMileage,
+  })
+);
+
 export const selectIsLoading = createSelector(
   [selectCarsState],
   (carsState) => carsState.isLoading

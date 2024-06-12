@@ -24,6 +24,8 @@ const carsSlice = createSlice({
     filters: {
       make: "",
       maxPrice: 10000,
+      minMileage: 0,
+      maxMileage: 1000000,
     },
     uniquePrices: [],
     minPrice: 0,
@@ -36,6 +38,11 @@ const carsSlice = createSlice({
     },
     setPriceRangeFilter(state, action) {
       state.filters.maxPrice = action.payload.maxPrice;
+      applyFilters(state);
+    },
+    setMileageRangeFilter(state, action) {
+      state.filters.minMileage = action.payload.minMileage;
+      state.filters.maxMileage = action.payload.maxMileage;
       applyFilters(state);
     },
   },
@@ -66,19 +73,25 @@ const carsSlice = createSlice({
   },
 });
 
-export const { setMakeFilter, setPriceRangeFilter } = carsSlice.actions;
+export const { setMakeFilter, setPriceRangeFilter, setMileageRangeFilter } =
+  carsSlice.actions;
 
 export default carsSlice.reducer;
 
 function applyFilters(state) {
-  const { make, maxPrice } = state.filters;
+  const { make, maxPrice, minMileage, maxMileage } = state.filters;
   state.filteredItems = state.items.filter((car) => {
     const carPrice = parsePrice(car.rentalPrice);
+    const carMileage = car.mileage;
     const matchesMake = make
       ? car.make.toLowerCase().includes(make.toLowerCase())
       : true;
     const matchesPrice = carPrice <= maxPrice;
-    return matchesMake && matchesPrice;
+    const matchesMileage =
+      maxMileage === 0
+        ? true
+        : carMileage >= minMileage && carMileage <= maxMileage;
+    return matchesMake && matchesPrice && matchesMileage;
   });
 }
 
