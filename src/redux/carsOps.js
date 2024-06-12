@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
 import adsCars from "../Data/adsCars";
 
 axios.defaults.baseURL =
@@ -24,7 +23,7 @@ export const initializeCarsData = createAsyncThunk(
     try {
       const response = await axios.get("cars");
       if (response.data.length === 0) {
-        // Якщо база порожня, завантажуємо дані з adsCars.json і використовуємо MockAPI.io для генерації ID
+        // Якщо база порожня, завантажуємо дані з adsCars.json
         for (const car of adsCars) {
           await thunkAPI.dispatch(addCar(car)).unwrap();
         }

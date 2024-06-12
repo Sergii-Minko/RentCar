@@ -1,4 +1,4 @@
-[
+const makes = [
   "Buick",
   "Volvo",
   "HUMMER",
@@ -10,7 +10,6 @@
   "Hyundai",
   "MINI",
   "Bentley",
-  "Mercedes-Benz",
   "Aston Martin",
   "Pontiac",
   "Lamborghini",
@@ -20,5 +19,7 @@
   "Mercedes-Benz",
   "Chrysler",
   "Kia",
-  "Land"
-]
+  "Land",
+];
+
+export default makes;
