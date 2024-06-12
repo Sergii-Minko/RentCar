@@ -56,3 +56,8 @@ export const selectMaxPrice = createSelector(
   [selectCarsState],
   (carsState) => carsState.maxPrice
 );
+export const selectMaxMileage = createSelector(
+  // Новий селектор
+  [selectCarsState],
+  (carsState) => carsState.maxMileage
+);

@@ -13,6 +13,17 @@ const handleRejected = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
 };
+const updateStateWithNewData = (state, newItems) => {
+  state.isLoading = false;
+  state.items = newItems;
+  const prices = state.items.map((car) => parsePrice(car.rentalPrice));
+  const mileages = state.items.map((car) => car.mileage);
+  state.minPrice = Math.min(...prices);
+  state.maxPrice = Math.max(...prices);
+  state.uniquePrices = generatePriceRange(state.minPrice, state.maxPrice);
+  state.maxMileage = Math.max(...mileages);
+  applyFilters(state);
+};
 
 const carsSlice = createSlice({
   name: "cars",
@@ -25,11 +36,12 @@ const carsSlice = createSlice({
       make: "",
       maxPrice: 10000,
       minMileage: 0,
-      maxMileage: 1000000,
+      maxMileage: 0,
     },
     uniquePrices: [],
     minPrice: 0,
     maxPrice: 0,
+    maxMileage: 0,
   },
   reducers: {
     setMakeFilter(state, action) {
@@ -50,24 +62,12 @@ const carsSlice = createSlice({
     builder
       .addCase(initializeCarsData.pending, handlePending)
       .addCase(initializeCarsData.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.items = action.payload;
-        const prices = state.items.map((car) => parsePrice(car.rentalPrice));
-        state.minPrice = Math.min(...prices);
-        state.maxPrice = Math.max(...prices);
-        state.uniquePrices = generatePriceRange(state.minPrice, state.maxPrice);
-        applyFilters(state);
+        updateStateWithNewData(state, action.payload);
       })
       .addCase(initializeCarsData.rejected, handleRejected)
       .addCase(addCar.pending, handlePending)
       .addCase(addCar.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.items.push(action.payload);
-        const prices = state.items.map((car) => parsePrice(car.rentalPrice));
-        state.minPrice = Math.min(...prices);
-        state.maxPrice = Math.max(...prices);
-        state.uniquePrices = generatePriceRange(state.minPrice, state.maxPrice);
-        applyFilters(state);
+        updateStateWithNewData(state, [...state.items, action.payload]);
       })
       .addCase(addCar.rejected, handleRejected);
   },
@@ -88,9 +88,8 @@ function applyFilters(state) {
       : true;
     const matchesPrice = carPrice <= maxPrice;
     const matchesMileage =
-      maxMileage === 0
-        ? true
-        : carMileage >= minMileage && carMileage <= maxMileage;
+      (maxMileage === 0 || carMileage <= maxMileage) &&
+      (minMileage === 0 || carMileage >= minMileage);
     return matchesMake && matchesPrice && matchesMileage;
   });
 }

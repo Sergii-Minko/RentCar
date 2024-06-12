@@ -10,8 +10,9 @@ import {
   selectUniquePrices,
   selectMaxPrice,
   selectMileageRangeFilter,
+  selectMaxMileage,
 } from "../../redux/selectors";
-// import MileageFilter from "../MileageFilter/MileageFilter";
+
 import makes from "../../Data/makes";
 
 const SearchBox = () => {
@@ -21,6 +22,7 @@ const SearchBox = () => {
   const uniquePrices = useSelector(selectUniquePrices);
   const maxPrice = useSelector(selectMaxPrice);
   const mileageRangeFilter = useSelector(selectMileageRangeFilter);
+  const maxMileage = useSelector(selectMaxMileage);
 
   const handleMakeChange = (e) => {
     dispatch(setMakeFilter(e.target.value));
@@ -57,7 +59,7 @@ const SearchBox = () => {
         </select>
       </label>
       <label>
-        Max Price:
+        Price/ 1 hour:
         <select
           value={priceRangeFilter.maxPrice}
           onChange={(e) => handleMaxPriceChange(Number(e.target.value))}
@@ -72,13 +74,17 @@ const SearchBox = () => {
       </label>
       <div>
         <label>
-          Сar mileage/km:
+          Car mileage/km:
           <input
             type="number"
-            value={mileageRangeFilter.minMileage}
+            value={
+              mileageRangeFilter.minMileage === 0
+                ? 0
+                : mileageRangeFilter.minMileage
+            }
             onChange={(e) =>
               handleMileageRangeChange(
-                Number(e.target.value),
+                e.target.value ? Number(e.target.value) : 0,
                 mileageRangeFilter.maxMileage
               )
             }
@@ -86,14 +92,18 @@ const SearchBox = () => {
           />
           <input
             type="number"
-            value={mileageRangeFilter.maxMileage}
+            value={
+              mileageRangeFilter.maxMileage === 0
+                ? maxMileage
+                : mileageRangeFilter.maxMileage
+            }
             onChange={(e) =>
               handleMileageRangeChange(
                 mileageRangeFilter.minMileage,
-                Number(e.target.value)
+                e.target.value ? Number(e.target.value) : 0
               )
             }
-            placeholder="to"
+            placeholder="To"
           />
         </label>
         <button onClick={applyFilters}>Apply</button>
