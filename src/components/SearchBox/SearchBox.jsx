@@ -33,9 +33,11 @@ const SearchBox = () => {
   const handleMaxPriceChange = (maxPrice) => {
     dispatch(setPriceRangeFilter({ maxPrice }));
   };
+
   const handleMileageRangeChange = (minMileage, maxMileage) => {
     dispatch(setMileageRangeFilter({ minMileage, maxMileage }));
   };
+
   const applyFilters = () => {
     dispatch(setMakeFilter(makeFilter));
     dispatch(setPriceRangeFilter({ maxPrice: priceRangeFilter.maxPrice }));
@@ -49,7 +51,7 @@ const SearchBox = () => {
 
   return (
     <div className={css.container}>
-      <label className={css.lable}>
+      <label className={css.label}>
         Car Brand:
         <select
           className={css.selectMake}
@@ -64,7 +66,7 @@ const SearchBox = () => {
           ))}
         </select>
       </label>
-      <label className={css.lable}>
+      <label className={css.label}>
         Price/ 1 hour:
         <select
           className={css.selectPrice}
@@ -81,7 +83,7 @@ const SearchBox = () => {
       </label>
       <div className={css.inputsContainer}>
         <div className={css.inputs}>
-          <label className={css.lable}>
+          <label className={css.label}>
             Car mileage/km:
             <input
               className={css.inputMileageLeft}

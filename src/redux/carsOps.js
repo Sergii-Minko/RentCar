@@ -19,18 +19,22 @@ export const addCar = createAsyncThunk(
 
 export const initializeCarsData = createAsyncThunk(
   "cars/initialize",
-  async (_, thunkAPI) => {
+  async ({ page = 1, limit = 12 }, thunkAPI) => {
     try {
-      const response = await axios.get("cars");
-      if (response.data.length === 0) {
-        // Якщо база порожня, завантажуємо дані з adsCars.json
-        for (const car of adsCars) {
-          await thunkAPI.dispatch(addCar(car)).unwrap();
-        }
-        const newResponse = await axios.get("cars");
-        return newResponse.data;
+      const response = await thunkAPI
+        .dispatch(fetchCars({ page, limit }))
+        .unwrap();
+      if (response.items.length === 0) {
+        const promises = adsCars.map((car) =>
+          thunkAPI.dispatch(addCar(car)).unwrap()
+        );
+        await Promise.all(promises);
+        const newResponse = await thunkAPI
+          .dispatch(fetchCars({ page, limit }))
+          .unwrap();
+        return newResponse;
       }
-      return response.data;
+      return response;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -39,10 +43,18 @@ export const initializeCarsData = createAsyncThunk(
 
 export const fetchCars = createAsyncThunk(
   "cars/fetchAll",
-  async (_, thunkAPI) => {
+  async ({ page, limit }, thunkAPI) => {
     try {
-      const response = await axios.get("cars");
-      return response.data;
+      const response = await axios.get("cars", {
+        params: {
+          page,
+          limit,
+        },
+      });
+      return {
+        items: response.data,
+        totalItems: parseInt(response.headers["x-total-count"], 10),
+      };
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

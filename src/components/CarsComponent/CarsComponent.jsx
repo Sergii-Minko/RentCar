@@ -12,10 +12,13 @@ const CarsComponent = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      <SearchBox />
-      <CarsList />
-    </div>
+    <>
+      <div>
+        <SearchBox />
+        <CarsList />
+      </div>
+    
+    </>
   );
 };
 

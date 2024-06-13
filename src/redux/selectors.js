@@ -61,3 +61,7 @@ export const selectMaxMileage = createSelector(
   [selectCarsState],
   (carsState) => carsState.maxMileage
 );
+export const selectCurrentPage = createSelector(
+  [selectCarsState],
+  (carsState) => carsState.currentPage
+);

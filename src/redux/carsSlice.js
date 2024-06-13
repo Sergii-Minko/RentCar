@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { initializeCarsData, addCar } from "./carsOps";
+import { initializeCarsData, fetchCars, addCar } from "./carsOps";
 
 axios.defaults.baseURL =
   "https://666809aff53957909ff639c8.mockapi.io/api/rent/";
@@ -13,9 +13,16 @@ const handleRejected = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
 };
-const updateStateWithNewData = (state, newItems) => {
+
+const handleCarAddition = (state, action) => {
   state.isLoading = false;
-  state.items = newItems;
+  state.items.push(action.payload);
+  updateStateWithNewData(state, state.items);
+};
+
+const updateStateWithNewData = (state, newData, append = false) => {
+  state.isLoading = false;
+  state.items = append ? [...state.items, ...newData] : newData;
   const prices = state.items.map((car) => parsePrice(car.rentalPrice));
   const mileages = state.items.map((car) => car.mileage);
   state.minPrice = Math.min(...prices);
@@ -42,6 +49,7 @@ const carsSlice = createSlice({
     minPrice: 0,
     maxPrice: 0,
     maxMileage: 0,
+    currentPage: 1,
   },
   reducers: {
     setMakeFilter(state, action) {
@@ -57,24 +65,40 @@ const carsSlice = createSlice({
       state.filters.maxMileage = action.payload.maxMileage;
       applyFilters(state);
     },
+    setCurrentPage(state, action) {
+      state.currentPage = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(initializeCarsData.pending, handlePending)
       .addCase(initializeCarsData.fulfilled, (state, action) => {
-        updateStateWithNewData(state, action.payload);
+        updateStateWithNewData(state, action.payload.items);
+        state.totalItems = action.payload.totalItems;
+        state.totalPages = Math.ceil(action.payload.totalItems / state.limit);
       })
       .addCase(initializeCarsData.rejected, handleRejected)
       .addCase(addCar.pending, handlePending)
       .addCase(addCar.fulfilled, (state, action) => {
-        updateStateWithNewData(state, [...state.items, action.payload]);
+        handleCarAddition(state, action);
       })
-      .addCase(addCar.rejected, handleRejected);
+      .addCase(addCar.rejected, handleRejected)
+      .addCase(fetchCars.pending, handlePending)
+      .addCase(fetchCars.fulfilled, (state, action) => {
+        updateStateWithNewData(state, action.payload.items, true);
+        state.totalItems += action.payload.items.length;
+        state.totalPages = Math.ceil(state.totalItems / state.limit);
+      })
+      .addCase(fetchCars.rejected, handleRejected);
   },
 });
 
-export const { setMakeFilter, setPriceRangeFilter, setMileageRangeFilter } =
-  carsSlice.actions;
+export const {
+  setMakeFilter,
+  setPriceRangeFilter,
+  setMileageRangeFilter,
+  setCurrentPage,
+} = carsSlice.actions;
 
 export default carsSlice.reducer;
 
