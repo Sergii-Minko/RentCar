@@ -1,11 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 import {
   setMakeFilter,
   setPriceRangeFilter,
   setMileageRangeFilter,
   filterItems,
-} from "../../redux/Filter/filtersSlice";
+} from "../../redux/Filter/filterSlice";
 import {
   selectMakeFilter,
   selectMileageRangeFilter,
@@ -32,7 +33,7 @@ const SearchBox = () => {
   };
 
   const handleMaxPriceChange = (e) => {
-    const price = e.target.value ? Number(e.target.value) : 0;
+    const price = e.target.value ? Number(e.target.value) : maxPrice;
     dispatch(setPriceRangeFilter({ maxPrice: price }));
   };
 
@@ -47,7 +48,9 @@ const SearchBox = () => {
   };
 
   const handleMaxMileageChange = (e) => {
-    const maxMileage = e.target.value ? Number(e.target.value) : 0;
+    const maxMileage = e.target.value
+      ? Number(e.target.value)
+      : mileageRangeFilter.maxMileage;
     dispatch(
       setMileageRangeFilter({
         minMileage: mileageRangeFilter.minMileage,
@@ -56,19 +59,19 @@ const SearchBox = () => {
     );
   };
 
+  useEffect(() => {
+    dispatch(filterItems(items));
+  }, [dispatch, items]);
+
   const handleSearch = () => {
     dispatch(filterItems(items));
   };
 
   return (
     <div className={css.container}>
-      <label className={css.label}>
+      <label className={css.lable}>
         Car Brand:
-        <select
-          className={css.selectMake}
-          value={makeFilter}
-          onChange={handleMakeChange}
-        >
+        <select className={css.selectMake} onChange={handleMakeChange}>
           <option value="">All</option>
           {makes.map((make, index) => (
             <option key={index} value={make}>
@@ -77,14 +80,10 @@ const SearchBox = () => {
           ))}
         </select>
       </label>
-      <label className={css.label}>
+      <label className={css.lable}>
         Price/ 1 hour:
-        <select
-          className={css.selectPrice}
-          value={maxPrice}
-          onChange={handleMaxPriceChange}
-        >
-          <option value="">To $</option>
+        <select className={css.selectPrice} onChange={handleMaxPriceChange}>
+          <option>To $</option>
           {uniquePrices.map((price, index) => (
             <option key={index} value={price}>
               {price}
@@ -94,12 +93,11 @@ const SearchBox = () => {
       </label>
       <div className={css.inputsContainer}>
         <div className={css.inputs}>
-          <label className={css.label}>
+          <label className={css.lable}>
             Car mileage/km:
             <input
               className={css.inputMileageLeft}
               type="number"
-              value={mileageRangeFilter.minMileage}
               onChange={handleMinMileageChange}
               placeholder="From"
             />
@@ -107,7 +105,6 @@ const SearchBox = () => {
           <input
             className={css.inputMileageRight}
             type="number"
-            value={mileageRangeFilter.maxMileage}
             onChange={handleMaxMileageChange}
             placeholder="To"
           />
@@ -119,5 +116,4 @@ const SearchBox = () => {
     </div>
   );
 };
-
 export default SearchBox;

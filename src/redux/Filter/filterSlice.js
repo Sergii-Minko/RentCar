@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { parsePrice } from "../Cars/carsSlice";
 
 const initialState = {
   filteredItems: [],
@@ -26,15 +27,20 @@ const filtersSlice = createSlice({
       const items = action.payload;
       state.filteredItems = items.filter((item) => {
         const matchMake = state.make ? item.make === state.make : true;
+        console.log(item.rentalPrice, state.maxPrice);
         const matchPrice = state.maxPrice
-          ? item.rentalPrice <= state.maxPrice
+          ? parsePrice(item.rentalPrice) <= state.maxPrice
           : true;
         const matchMinMileage = item.mileage >= state.minMileage;
         const matchMaxMileage = state.maxMileage
           ? item.mileage <= state.maxMileage
           : true;
+        console.log(matchMake, matchPrice, matchMinMileage, matchMaxMileage);
+
         return matchMake && matchPrice && matchMinMileage && matchMaxMileage;
       });
+
+      console.log(state.filteredItems);
     },
   },
 });

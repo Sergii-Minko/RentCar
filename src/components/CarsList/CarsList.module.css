@@ -6,7 +6,8 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  align-content: flex-start;
+  /* align-content: flex-start; */
+  list-style: none;
   gap: 29px;
   width: 1184px;
   height: 426px;
@@ -20,5 +21,11 @@
   padding: 0;
   display: flex;
   justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.listContainer {
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }

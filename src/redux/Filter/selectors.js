@@ -38,3 +38,7 @@ export const selectFilteredCars = createSelector(
     });
   }
 );
+export const selectFilteredItems = createSelector(
+  [selectFiltersState],
+  (filterState) => filterState.filteredItems
+);

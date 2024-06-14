@@ -19,7 +19,7 @@ export const addCar = createAsyncThunk(
 
 export const fetchCars = createAsyncThunk(
   "cars/fetchAll",
-  async ({ page, limit }, thunkAPI) => {
+  async ({ page, limit = 12 }, thunkAPI) => {
     try {
       const response = await axios.get("cars", {
         params: {
@@ -27,11 +27,9 @@ export const fetchCars = createAsyncThunk(
           limit,
         },
       });
+      console.log(response.data);
 
-      return {
-        items: response.data,
-        totalItems: parseInt(response.headers["x-total-count"], 12),
-      };
+      return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

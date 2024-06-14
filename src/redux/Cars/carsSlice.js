@@ -16,7 +16,13 @@ const handleRejected = (state, action) => {
 
 const setSearchState = (state, action) => {
   state.isLoading = false;
-  state.items = [...state.items, ...action.payload];
+  console.log(action.payload);
+  if (state.currentPage === 1) {
+    state.items = action.payload;
+  } else {
+    state.items = [...state.items, ...action.payload];
+  }
+
   const prices = state.items.map((car) => parsePrice(car.rentalPrice));
   state.minPrice = Math.min(...prices);
   state.maxPrice = Math.max(...prices);
@@ -48,9 +54,7 @@ const carsSlice = createSlice({
       .addCase(addCar.fulfilled, setSearchState)
       .addCase(addCar.rejected, handleRejected)
       .addCase(fetchCars.pending, handlePending)
-      .addCase(fetchCars.fulfilled, (state, action) => {
-        setSearchState(state, action.payload.items);
-      })
+      .addCase(fetchCars.fulfilled, setSearchState)
       .addCase(fetchCars.rejected, handleRejected);
   },
 });
@@ -59,7 +63,7 @@ export const { setCurrentPage } = carsSlice.actions;
 
 export default carsSlice.reducer;
 
-const parsePrice = (price) => parseFloat(price.replace("$", ""));
+export const parsePrice = (price) => parseFloat(price.replace("$", ""));
 
 const generatePriceRange = (minPrice, maxPrice) => {
   const prices = [];
