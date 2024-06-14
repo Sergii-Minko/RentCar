@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { initializeCarsData, fetchCars } from "../../redux/carsOps";
+import { fetchCars } from "../../redux/carsOps";
 import { setCurrentPage } from "../../redux/carsSlice";
 import {
   selectFilteredCars,
@@ -19,18 +19,16 @@ const CarsList = () => {
   const error = useSelector(selectError);
   const currentPage = useSelector(selectCurrentPage);
 
-  useEffect(() => {
-    dispatch(initializeCarsData({ page: currentPage }));
-  }, [dispatch, currentPage]);
-
   const handleLoadMore = () => {
+    if (currentPage === 3) {
+      return;
+    }
     dispatch(setCurrentPage(currentPage + 1));
   };
 
   useEffect(() => {
-    if (currentPage > 1) {
-      dispatch(fetchCars({ page: currentPage, limit: 12 }));
-    }
+    console.log(currentPage);
+    dispatch(fetchCars({ page: currentPage, limit: 12 }));
   }, [dispatch, currentPage]);
 
   return (

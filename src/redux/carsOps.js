@@ -17,29 +17,21 @@ export const addCar = createAsyncThunk(
   }
 );
 
-export const initializeCarsData = createAsyncThunk(
-  "cars/initialize",
-  async ({ page = 1, limit = 12 }, thunkAPI) => {
-    try {
-      const response = await thunkAPI
-        .dispatch(fetchCars({ page, limit }))
-        .unwrap();
-      if (response.items.length === 0) {
-        const promises = adsCars.map((car) =>
-          thunkAPI.dispatch(addCar(car)).unwrap()
-        );
-        await Promise.all(promises);
-        const newResponse = await thunkAPI
-          .dispatch(fetchCars({ page, limit }))
-          .unwrap();
-        return newResponse;
-      }
-      return response;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
-    }
-  }
-);
+// export const initializeCarsData = createAsyncThunk(
+//   "cars/initialize",
+//   async (adsCars, thunkAPI) => {
+//     try {
+//       const promises = adsCars.map((car) =>
+//         thunkAPI.dispatch(addCar(car)).unwrap()
+//       );
+//       await Promise.all(promises);
+
+//       return await thunkAPI.dispatch(fetchCars(1, 12)).unwrap();
+//     } catch (e) {
+//       return thunkAPI.rejectWithValue(e.message);
+//     }
+//   }
+// );
 
 export const fetchCars = createAsyncThunk(
   "cars/fetchAll",
@@ -51,9 +43,22 @@ export const fetchCars = createAsyncThunk(
           limit,
         },
       });
+      console.log(response.data.length);
+      // if (page === 1 && response.data.length === 0) {
+      //   console.log(response.data.length);
+      //   const initialresponse = await thunkAPI
+      //     .dispatch(initializeCarsData(adsCars))
+      //     .unwrap();
+
+      //   return {
+      //     items: initialresponse.data,
+      //     totalItems: parseInt(response.headers["x-total-count"], 12),
+      //   };
+      // }
+
       return {
         items: response.data,
-        totalItems: parseInt(response.headers["x-total-count"], 10),
+        totalItems: parseInt(response.headers["x-total-count"], 12),
       };
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

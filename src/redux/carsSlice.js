@@ -17,7 +17,13 @@ const handleRejected = (state, action) => {
 const handleCarAddition = (state, action) => {
   state.isLoading = false;
   state.items.push(action.payload);
-  updateStateWithNewData(state, state.items);
+  const prices = state.items.map((car) => parsePrice(car.rentalPrice));
+  const mileages = state.items.map((car) => car.mileage);
+  state.minPrice = Math.min(...prices);
+  state.maxPrice = Math.max(...prices);
+  state.uniquePrices = generatePriceRange(state.minPrice, state.maxPrice);
+  state.maxMileage = Math.max(...mileages);
+  applyFilters(state);
 };
 
 const updateStateWithNewData = (state, newData, append = false) => {
@@ -49,6 +55,10 @@ const carsSlice = createSlice({
     minPrice: 0,
     maxPrice: 0,
     maxMileage: 0,
+    page: 1,
+    limit: 12,
+    totalPages: 3,
+    totalItems: 32,
     currentPage: 1,
   },
   reducers: {
@@ -71,23 +81,19 @@ const carsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(initializeCarsData.pending, handlePending)
-      .addCase(initializeCarsData.fulfilled, (state, action) => {
-        updateStateWithNewData(state, action.payload.items);
-        state.totalItems = action.payload.totalItems;
-        state.totalPages = Math.ceil(action.payload.totalItems / state.limit);
-      })
-      .addCase(initializeCarsData.rejected, handleRejected)
+      // .addCase(initializeCarsData.pending, handlePending)
+      // .addCase(initializeCarsData.fulfilled, (state, action) => {
+      //   updateStateWithNewData(state, action.payload.items);
+      //   state.totalItems = action.payload.totalItems;
+      //   state.totalPages = Math.ceil(action.payload.totalItems / state.limit);
+      // })
+      // .addCase(initializeCarsData.rejected, handleRejected)
       .addCase(addCar.pending, handlePending)
-      .addCase(addCar.fulfilled, (state, action) => {
-        handleCarAddition(state, action);
-      })
+      .addCase(addCar.fulfilled, handleCarAddition)
       .addCase(addCar.rejected, handleRejected)
       .addCase(fetchCars.pending, handlePending)
       .addCase(fetchCars.fulfilled, (state, action) => {
         updateStateWithNewData(state, action.payload.items, true);
-        state.totalItems += action.payload.items.length;
-        state.totalPages = Math.ceil(state.totalItems / state.limit);
       })
       .addCase(fetchCars.rejected, handleRejected);
   },

@@ -1,6 +1,6 @@
 const adsCars = [
   {
-    id: 9582,
+    id: 1,
     year: 2008,
     make: "Buick",
     model: "Enclave",
@@ -24,7 +24,7 @@ const adsCars = [
     mileage: 5858,
   },
   {
-    id: 9584,
+    id: 2,
     year: 2019,
     make: "Volvo",
     model: "XC90",
@@ -52,7 +52,7 @@ const adsCars = [
     mileage: 5352,
   },
   {
-    id: 9586,
+    id: 3,
     year: 2020,
     make: "Volvo",
     model: "XC60",
@@ -80,7 +80,7 @@ const adsCars = [
     mileage: 5966,
   },
   {
-    id: 9587,
+    id: 4,
     year: 2006,
     make: "HUMMER",
     model: "H2",
@@ -108,7 +108,7 @@ const adsCars = [
     mileage: 4771,
   },
   {
-    id: 9590,
+    id: 5,
     year: 2016,
     make: "Subaru",
     model: "Outback",
@@ -136,7 +136,7 @@ const adsCars = [
     mileage: 4061,
   },
   {
-    id: 9591,
+    id: 6,
     year: 2010,
     make: "Mitsubishi",
     model: "Outlander",
@@ -164,7 +164,7 @@ const adsCars = [
     mileage: 5374,
   },
   {
-    id: 9593,
+    id: 7,
     year: 2014,
     make: "Nissan",
     model: "Pathfinder",
@@ -192,7 +192,7 @@ const adsCars = [
     mileage: 6282,
   },
   {
-    id: 9596,
+    id: 8,
     year: 2009,
     make: "Lincoln",
     model: "Navigator L",
@@ -220,7 +220,7 @@ const adsCars = [
     mileage: 6173,
   },
   {
-    id: 9597,
+    id: 9,
     year: 2000,
     make: "GMC",
     model: "Yukon Denali",
@@ -248,7 +248,7 @@ const adsCars = [
     mileage: 4989,
   },
   {
-    id: 9598,
+    id: 10,
     year: 2007,
     make: "Hyundai",
     model: "Tucson",
@@ -276,7 +276,7 @@ const adsCars = [
     mileage: 4591,
   },
   {
-    id: 9583,
+    id: 11,
     year: 2006,
     make: "MINI",
     model: "Convertible",
@@ -304,7 +304,7 @@ const adsCars = [
     mileage: 6275,
   },
   {
-    id: 9606,
+    id: 12,
     year: 2007,
     make: "Bentley",
     model: "Azure",
@@ -332,7 +332,7 @@ const adsCars = [
     mileage: 4317,
   },
   {
-    id: 9612,
+    id: 13,
     year: 2004,
     make: "Mercedes-Benz",
     model: "SL-Class",
@@ -360,7 +360,7 @@ const adsCars = [
     mileage: 5722,
   },
   {
-    id: 9616,
+    id: 14,
     year: 2010,
     make: "Aston Martin",
     model: "DBS",
@@ -388,7 +388,7 @@ const adsCars = [
     mileage: 6464,
   },
   {
-    id: 9619,
+    id: 15,
     year: 1996,
     make: "Pontiac",
     model: "Firebird",
@@ -416,7 +416,7 @@ const adsCars = [
     mileage: 5091,
   },
   {
-    id: 9629,
+    id: 16,
     year: 2009,
     make: "Lamborghini",
     model: "Murcielago",
@@ -444,7 +444,7 @@ const adsCars = [
     mileage: 5832,
   },
   {
-    id: 9631,
+    id: 17,
     year: 2011,
     make: "Audi",
     model: "A5",
@@ -472,7 +472,7 @@ const adsCars = [
     mileage: 4635,
   },
   {
-    id: 9634,
+    id: 18,
     year: 2001,
     make: "BMW",
     model: "Z8",
@@ -500,7 +500,7 @@ const adsCars = [
     mileage: 5990,
   },
   {
-    id: 9655,
+    id: 19,
     year: 1998,
     make: "Chevrolet",
     model: "Camaro",
@@ -528,7 +528,7 @@ const adsCars = [
     mileage: 6330,
   },
   {
-    id: 9685,
+    id: 20,
     year: 2006,
     make: "Mercedes-Benz",
     model: "SLK-Class",
@@ -556,12 +556,12 @@ const adsCars = [
     mileage: 6280,
   },
   {
-    id: 9660,
+    id: 21,
     year: 2020,
     make: "Chrysler",
     model: "Voyager",
     type: "Van/Minivan",
-    img: "https://ftp.goit.study/img/cars-test-task/chrysler_voyager.jpg",
+    img: "https://static0.carbuzzimages.com/wordpress/wp-content/uploads/gallery-images/original/669000/400/669413.jpg",
     description:
       "The Chrysler Voyager is a practical and versatile van/minivan that provides comfortable seating, ample cargo space, and a range of convenient features for family-oriented transportation.",
     fuelConsumption: "8.2",
@@ -584,7 +584,7 @@ const adsCars = [
     mileage: 5807,
   },
   {
-    id: 9630,
+    id: 22,
     year: 2020,
     make: "Kia",
     model: "Rio",
@@ -612,7 +612,7 @@ const adsCars = [
     mileage: 4618,
   },
   {
-    id: 9586,
+    id: 24,
     year: 2020,
     make: "Volvo",
     model: "XC60",
@@ -640,7 +640,7 @@ const adsCars = [
     mileage: 6618,
   },
   {
-    id: 9618,
+    id: 26,
     year: 2020,
     make: "Land Rover",
     model: "Range Rover Sport",
@@ -668,7 +668,7 @@ const adsCars = [
     mileage: 4856,
   },
   {
-    id: 9630,
+    id: 27,
     year: 2020,
     make: "Kia",
     model: "Rio",
@@ -694,6 +694,202 @@ const adsCars = [
     rentalConditions:
       "Minimum age: 21\nValid driver's license\nSecurity deposit and insurance required",
     mileage: 6234,
+  },
+  {
+    id: 28,
+    year: 2020,
+    make: "Tesla",
+    model: "Model X",
+    type: "Electric SUV",
+    img: "https://i.insider.com/5a4f952c3225de2b1a8b47cd?width=700",
+    description:
+      "The Tesla Model X is a cutting-edge electric SUV with impressive performance, advanced technology, and spacious interior.",
+    fuelConsumption: "0",
+    engineSize: "Dual Motor",
+    accessories: [
+      "Falcon Wing doors",
+      "Enhanced Autopilot",
+      "Premium Connectivity",
+    ],
+    functionalities: [
+      "Full Self-Driving Capability",
+      "Over-the-air updates",
+      "HEPA air filtration system",
+    ],
+    rentalPrice: "$60",
+    rentalCompany: "Electric Dream Rentals",
+    address: "789 Future Street, Odessa, Ukraine",
+    rentalConditions:
+      "Minimum age: 30\nValid driver's license\nCredit card for deposit",
+    mileage: 3200,
+  },
+  {
+    id: 29,
+    year: 2017,
+    make: "BMW",
+    model: "X5",
+    type: "SUV",
+    img: "https://www.edmunds.com/assets/m/for-sale/2f-5uxks4c34h0u04297/img-3-960x.jpg",
+    description:
+      "The BMW X5 combines performance, luxury, and versatility in a stylish SUV with a powerful engine and advanced features.",
+    fuelConsumption: "9.8",
+    engineSize: "3.0L I6",
+    accessories: [
+      "Panoramic moonroof",
+      "Harman Kardon sound system",
+      "Heated front seats",
+    ],
+    functionalities: [
+      "Dynamic Damper Control",
+      "Parking Assistant",
+      "Adaptive LED headlights",
+    ],
+    rentalPrice: "$55",
+    rentalCompany: "Executive Car Hire",
+    address: "321 Luxury Road, Kharkiv, Ukraine",
+    rentalConditions:
+      "Minimum age: 28\nValid driver's license\nSecurity deposit required",
+    mileage: 4500,
+  },
+  {
+    id: 30,
+    year: 2021,
+    make: "Audi",
+    model: "Q7",
+    type: "SUV",
+    img: "https://hips.hearstapps.com/hmg-prod/images/2021-audi-q7-mmp-1-1591218923.jpg",
+    description:
+      "The Audi Q7 is a luxury SUV known for its sophisticated design, high-tech features, and superior comfort.",
+    fuelConsumption: "9.1",
+    engineSize: "3.0L V6",
+    accessories: [
+      "Valcona leather seats",
+      "Bang & Olufsen sound system",
+      "Virtual Cockpit",
+    ],
+    functionalities: [
+      "Quattro all-wheel drive",
+      "Adaptive air suspension",
+      "Traffic Jam Assist",
+    ],
+    rentalPrice: "$65",
+    rentalCompany: "Luxury Rides",
+    address: "654 Premium Boulevard, Dnipro, Ukraine",
+    rentalConditions:
+      "Minimum age: 26\nValid driver's license\nInsurance coverage required",
+    mileage: 3000,
+  },
+  {
+    id: 31,
+    year: 2018,
+    make: "Mercedes-Benz",
+    model: "GLC",
+    type: "SUV",
+    img: "https://di-uploads-pod3.dealerinspire.com/fletcherjonesmbnewport/uploads/2018/02/2018-GLC_2.jpg",
+    description:
+      "The Mercedes-Benz GLC is a luxurious SUV offering a perfect blend of style, comfort, and advanced technology.",
+    fuelConsumption: "8.9",
+    engineSize: "2.0L I4",
+    accessories: [
+      "MB-Tex upholstery",
+      "Burmester surround sound",
+      "Panorama roof",
+    ],
+    functionalities: [
+      "DISTRONIC PLUS with Steering Assist",
+      "PRE-SAFE PLUS",
+      "Active Parking Assist",
+    ],
+    rentalPrice: "$45",
+    rentalCompany: "Elite Car Rentals",
+    address: "987 Prestige Lane, Kiev, Ukraine",
+    rentalConditions:
+      "Minimum age: 27\nValid driver's license\nDeposit required",
+    mileage: 4800,
+  },
+  {
+    id: 32,
+    year: 2019,
+    make: "Porsche",
+    model: "Cayenne",
+    type: "SUV",
+    img: "https://images.cars.com/cldstatic/wp-content/uploads/01-porsche-cayenne-2019-angle--black--exterior--front.jpg",
+    description:
+      "The Porsche Cayenne is a high-performance SUV that offers thrilling driving dynamics along with luxury and practicality.",
+    fuelConsumption: "9.5",
+    engineSize: "3.0L V6",
+    accessories: [
+      "Leather interior",
+      "BOSE® Surround Sound System",
+      "Adaptive Sports Seats",
+    ],
+    functionalities: [
+      "Porsche Active Suspension Management",
+      "Porsche Dynamic Light System",
+      "Lane Change Assist",
+    ],
+    rentalPrice: "$70",
+    rentalCompany: "Sport Luxury Rentals",
+    address: "123 Speedster Avenue, Lviv, Ukraine",
+    rentalConditions:
+      "Minimum age: 30\nValid driver's license\nComprehensive insurance required",
+    mileage: 3400,
+  },
+  {
+    id: 33,
+    year: 2020,
+    make: "Land Rover",
+    model: "Range Rover",
+    type: "SUV",
+    img: "https://www.autotrader.ca/editorial/media/177973/2020-land-rover-range-rover-p525-hse-01-jm.jpg",
+    description:
+      "The Land Rover Range Rover is an iconic SUV known for its off-road capabilities, luxurious interior, and advanced features.",
+    fuelConsumption: "10.0",
+    engineSize: "3.0L V6",
+    accessories: [
+      "Windsor leather seats",
+      "Meridian™ Surround Sound System",
+      "Sliding panoramic roof",
+    ],
+    functionalities: [
+      "Terrain Response 2",
+      "All-Terrain Progress Control",
+      "Adaptive Dynamics",
+    ],
+    rentalPrice: "$75",
+    rentalCompany: "Adventure Car Rentals",
+    address: "456 Explorer Road, Odessa, Ukraine",
+    rentalConditions:
+      "Minimum age: 32\nValid driver's license\nSecurity deposit required",
+    mileage: 2800,
+  },
+  {
+    id: 34,
+    year: 2021,
+    make: "Jaguar",
+    model: "F-PACE",
+    type: "SUV",
+    img: "https://editorial.pxcrush.net/carsales/general/editorial/f-pace-driving.jpg?width=1024&height=682",
+    description:
+      "The Jaguar F-PACE is a performance SUV that combines sporty handling with luxurious comfort and advanced technology.",
+    fuelConsumption: "8.7",
+    engineSize: "2.0L I4",
+    accessories: [
+      "Windsor leather seats",
+      "Meridian™ Audio System",
+      "Interactive Driver Display",
+    ],
+    functionalities: [
+      "All-Wheel Drive",
+      "Adaptive Dynamics",
+      "Lane Keep Assist",
+    ],
+    rentalPrice: "$55",
+    rentalCompany: "Prestige Car Rentals",
+    address: "789 Elegance Street, Kharkiv, Ukraine",
+    rentalConditions:
+      "Minimum age: 29\nValid driver's license\nCredit card for deposit",
+    mileage: 2900,
   },
 ];
 
