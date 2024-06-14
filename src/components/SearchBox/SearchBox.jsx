@@ -1,52 +1,63 @@
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setMakeFilter,
   setPriceRangeFilter,
   setMileageRangeFilter,
-} from "../../redux/carsSlice";
+  filterItems,
+} from "../../redux/Filter/filtersSlice";
 import {
   selectMakeFilter,
-  selectPriceRangeFilter,
+  selectMileageRangeFilter,
+} from "../../redux/Filter/selectors";
+import {
   selectUniquePrices,
   selectMaxPrice,
-  selectMileageRangeFilter,
-  selectMaxMileage,
-} from "../../redux/selectors";
+  selectAllCars,
+} from "../../redux/Cars/selectors";
 
 import css from "./SearchBox.module.css";
-
 import makes from "../../Data/makes";
 
 const SearchBox = () => {
   const dispatch = useDispatch();
+  const items = useSelector(selectAllCars);
   const makeFilter = useSelector(selectMakeFilter);
-  const priceRangeFilter = useSelector(selectPriceRangeFilter);
   const uniquePrices = useSelector(selectUniquePrices);
   const maxPrice = useSelector(selectMaxPrice);
   const mileageRangeFilter = useSelector(selectMileageRangeFilter);
-  const maxMileage = useSelector(selectMaxMileage);
 
   const handleMakeChange = (e) => {
     dispatch(setMakeFilter(e.target.value));
   };
 
-  const handleMaxPriceChange = (maxPrice) => {
-    dispatch(setPriceRangeFilter({ maxPrice }));
+  const handleMaxPriceChange = (e) => {
+    const price = e.target.value ? Number(e.target.value) : 0;
+    dispatch(setPriceRangeFilter({ maxPrice: price }));
   };
 
-  const handleMileageRangeChange = (minMileage, maxMileage) => {
-    dispatch(setMileageRangeFilter({ minMileage, maxMileage }));
-  };
-
-  const applyFilters = () => {
-    dispatch(setMakeFilter(makeFilter));
-    dispatch(setPriceRangeFilter({ maxPrice: priceRangeFilter.maxPrice }));
+  const handleMinMileageChange = (e) => {
+    const minMileage = e.target.value ? Number(e.target.value) : 0;
     dispatch(
       setMileageRangeFilter({
-        minMileage: mileageRangeFilter.minMileage,
+        minMileage,
         maxMileage: mileageRangeFilter.maxMileage,
       })
     );
+  };
+
+  const handleMaxMileageChange = (e) => {
+    const maxMileage = e.target.value ? Number(e.target.value) : 0;
+    dispatch(
+      setMileageRangeFilter({
+        minMileage: mileageRangeFilter.minMileage,
+        maxMileage,
+      })
+    );
+  };
+
+  const handleSearch = () => {
+    dispatch(filterItems(items));
   };
 
   return (
@@ -70,10 +81,10 @@ const SearchBox = () => {
         Price/ 1 hour:
         <select
           className={css.selectPrice}
-          value={priceRangeFilter.maxPrice}
-          onChange={(e) => handleMaxPriceChange(Number(e.target.value))}
+          value={maxPrice}
+          onChange={handleMaxPriceChange}
         >
-          <option value={maxPrice}>To $</option>
+          <option value="">To $</option>
           {uniquePrices.map((price, index) => (
             <option key={index} value={price}>
               {price}
@@ -88,38 +99,20 @@ const SearchBox = () => {
             <input
               className={css.inputMileageLeft}
               type="number"
-              value={
-                mileageRangeFilter.minMileage === 0
-                  ? 0
-                  : mileageRangeFilter.minMileage
-              }
-              onChange={(e) =>
-                handleMileageRangeChange(
-                  e.target.value ? Number(e.target.value) : 0,
-                  mileageRangeFilter.maxMileage
-                )
-              }
+              value={mileageRangeFilter.minMileage}
+              onChange={handleMinMileageChange}
               placeholder="From"
             />
           </label>
           <input
             className={css.inputMileageRight}
             type="number"
-            value={
-              mileageRangeFilter.maxMileage === 0
-                ? maxMileage
-                : mileageRangeFilter.maxMileage
-            }
-            onChange={(e) =>
-              handleMileageRangeChange(
-                mileageRangeFilter.minMileage,
-                e.target.value ? Number(e.target.value) : 0
-              )
-            }
+            value={mileageRangeFilter.maxMileage}
+            onChange={handleMaxMileageChange}
             placeholder="To"
           />
         </div>
-        <button className={css.searchButton} onClick={applyFilters}>
+        <button className={css.searchButton} onClick={handleSearch}>
           Search
         </button>
       </div>

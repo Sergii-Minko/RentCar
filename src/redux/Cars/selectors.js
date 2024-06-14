@@ -7,31 +7,6 @@ export const selectAllCars = createSelector(
   (carsState) => carsState.items
 );
 
-export const selectFilteredCars = createSelector(
-  [selectCarsState],
-  (carsState) => carsState.filteredItems
-);
-
-export const selectMakeFilter = createSelector(
-  [selectCarsState],
-  (carsState) => carsState.filters.make
-);
-
-export const selectPriceRangeFilter = createSelector(
-  [selectCarsState],
-  (carsState) => ({
-    maxPrice: carsState.filters.maxPrice,
-  })
-);
-
-export const selectMileageRangeFilter = createSelector(
-  [selectCarsState],
-  (carsState) => ({
-    minMileage: carsState.filters.minMileage,
-    maxMileage: carsState.filters.maxMileage,
-  })
-);
-
 export const selectIsLoading = createSelector(
   [selectCarsState],
   (carsState) => carsState.isLoading
@@ -56,11 +31,7 @@ export const selectMaxPrice = createSelector(
   [selectCarsState],
   (carsState) => carsState.maxPrice
 );
-export const selectMaxMileage = createSelector(
-  // Новий селектор
-  [selectCarsState],
-  (carsState) => carsState.maxMileage
-);
+
 export const selectCurrentPage = createSelector(
   [selectCarsState],
   (carsState) => carsState.currentPage

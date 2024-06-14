@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCars } from "../../redux/carsOps";
-import { setCurrentPage } from "../../redux/carsSlice";
+import { fetchCars } from "../../redux/Cars/carsOps";
+import { setCurrentPage } from "../../redux/Cars/carsSlice";
 import {
   selectFilteredCars,
   selectIsLoading,
   selectError,
   selectCurrentPage,
-} from "../../redux/selectors";
+} from "../../redux/Cars/selectors";
 import CarItem from "../CarItem/CarItem";
 import css from "./CarsList.module.css";
 
