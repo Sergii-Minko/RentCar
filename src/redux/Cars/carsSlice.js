@@ -8,6 +8,13 @@ axios.defaults.baseURL =
 const handlePending = (state) => {
   state.isLoading = true;
 };
+const favoritesMap = (items) =>
+  items
+    .map((item) => item.id)
+    .reduce((acc, id) => {
+      acc[id] = false;
+      return acc;
+    }, {});
 
 const handleRejected = (state, action) => {
   state.isLoading = false;
@@ -19,8 +26,10 @@ const setSearchState = (state, action) => {
   console.log(action.payload);
   if (state.currentPage === 1) {
     state.items = action.payload;
+    state.favorites = favoritesMap(state.items);
   } else {
     state.items = [...state.items, ...action.payload];
+    state.favorites = favoritesMap(state.items);
   }
 
   const prices = state.items.map((car) => parsePrice(car.rentalPrice));
@@ -32,6 +41,7 @@ const setSearchState = (state, action) => {
 const carsSlice = createSlice({
   name: "cars",
   initialState: {
+    favorites: [],
     items: [],
     isLoading: false,
     error: null,

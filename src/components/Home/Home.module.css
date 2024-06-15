@@ -1,0 +1,47 @@
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+  color: #3470ff;
+}
+.span {
+  color: #3470ff;
+  &:hover {
+    color: #0b44cd;
+  }
+}
+
+.description {
+  font-size: 18px;
+}
+.container {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+
+  background-image: url("/rentcar-min.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 800px;
+  height: 100vh;
+}
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

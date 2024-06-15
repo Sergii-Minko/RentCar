@@ -1,5 +1,7 @@
+import IconHerz from "../IconHerz/IconHerz";
 import css from "./CarItem.module.css";
-
+import { isFavorite } from "../../redux/Favorits/selectors";
+import { useSelector } from "react-redux";
 const CarItem = ({ car }) => {
   const {
     id,
@@ -16,10 +18,12 @@ const CarItem = ({ car }) => {
   } = car;
 
   const [street, city, country] = address.split(",").map((part) => part.trim());
+  const Like = useSelector((state) => isFavorite(state, id));
 
   return (
     <li key={id} className={css.itemCar}>
       <div className={css.itemImg}>
+        <IconHerz Like={Like} id={id} />
         <img src={img} alt={model} height="268" />
       </div>
 

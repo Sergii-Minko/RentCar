@@ -1,0 +1,29 @@
+.activeLink {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: #0b44cd;
+  font-size: 18px;
+  font-weight: bold;
+  &:hover {
+    color: #0b44cd;
+  }
+}
+.link {
+  font-size: 18px;
+  font-weight: bold;
+  color: #3470ff;
+  &:hover {
+    color: #0b44cd;
+  }
+}
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 20px;
+  margin-bottom: 10px;
+}

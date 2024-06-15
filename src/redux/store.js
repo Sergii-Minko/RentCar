@@ -1,6 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers } from "@reduxjs/toolkit";
 import carsReducer from "./Cars/carsSlice";
 import { filtersReducer } from "./Filter/filterSlice";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import {
   FLUSH,
   REHYDRATE,
@@ -10,11 +13,22 @@ import {
   REGISTER,
 } from "redux-persist";
 
-const store = configureStore({
-  reducer: {
-    cars: carsReducer,
-    filter: filtersReducer,
-  },
+const persistConfig = {
+  key: "root",
+  storage,
+  whitelist: ["favorites", "favoritesfilter"], // Змінено на масив рядків
+};
+
+const rootReducer = combineReducers({
+  cars: carsReducer,
+  filter: filtersReducer,
+  // Додайте інші редюсери тут
+});
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = configureStore({
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
@@ -24,4 +38,8 @@ const store = configureStore({
   devTools: import.meta.env.MODE !== "production",
 });
 
-export default store;
+export const persistor = persistStore(store);
+
+export const isFavorite = (state, itemId) => {
+  return state.favorites[itemId] || false;
+};
