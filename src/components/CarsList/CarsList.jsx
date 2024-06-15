@@ -43,16 +43,15 @@ const CarsList = () => {
               <CarItem key={car.id} car={car} />
             ))}
           </ul>
-          {isLoading && <p>Loading...</p>}
-          {error && <p>{error}</p>}
-          {!isLoading && !error && <LoadMoreBtn onClik={handleLoadMore} />}
         </div>
 
-        {/* <div>
+        <div>
           {isLoading && <p>Loading...</p>}
           {error && <p>{error}</p>}
-          {!isLoading && !error && <LoadMoreBtn onClik={handleLoadMore} />}
-        </div> */}
+          {!isLoading && !error && currentPage < 3 && (
+            <LoadMoreBtn onClik={handleLoadMore} />
+          )}
+        </div>
       </div>
     </>
   );

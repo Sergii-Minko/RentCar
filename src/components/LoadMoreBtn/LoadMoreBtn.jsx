@@ -4,7 +4,7 @@ const LoadMoreBtn = ({ onClik }) => {
   return (
     <div className={css.container}>
       <button className={css.btn} onClick={onClik}>
-        Load More
+        Load more
       </button>
     </div>
   );
