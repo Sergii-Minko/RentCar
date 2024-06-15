@@ -45,6 +45,7 @@
   line-height: 111%;
   color: #121417;
   border: 0;
+  padding-left: 36px;
 }
 .inputs {
   display: flex;
@@ -66,8 +67,9 @@
   line-height: 111%;
   color: #121417;
   padding: 0;
-  padding-left: 24px;
+  padding-left: 75px;
   border-right: 1px solid rgba(138, 138, 137, 0.2);
+  outline: none;
 }
 .inputMileageRight {
   border-radius: 0 14px 14px 0;
@@ -80,9 +82,9 @@
   font-size: 18px;
   line-height: 111%;
   color: #121417;
-
   padding: 0;
-  padding-left: 24px;
+  padding-left: 46px;
+  outline: none;
 }
 .searchButton {
   border-radius: 12px;
@@ -110,4 +112,47 @@
   justify-content: center;
   align-items: flex-end;
   gap: 18px;
+}
+
+/* Поле вводу */
+
+.inputcontainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: fit-content;
+  /* margin: 20px; */
+}
+
+.inputcontainer span {
+  position: absolute;
+  left: 24px;
+  pointer-events: none;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 111%;
+  color: #121417;
+}
+.inputcontainer .priceSpan {
+  position: absolute;
+  left: 17px;
+  pointer-events: none;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 111%;
+  color: #121417;
+  top: 15px;
+}
+.inputcontainer .priceS {
+  position: absolute;
+  left: 60px;
+  pointer-events: none;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 111%;
+  color: #121417;
+  top: 15px;
 }

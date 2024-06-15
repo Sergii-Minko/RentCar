@@ -66,6 +66,9 @@ const SearchBox = () => {
   const handleSearch = () => {
     dispatch(filterItems(items));
   };
+  const generateSpaces = (count) => {
+    return "&nbsp;".repeat(count);
+  };
 
   return (
     <div className={css.container}>
@@ -82,32 +85,41 @@ const SearchBox = () => {
       </label>
       <label className={css.lable}>
         Price/ 1 hour:
-        <select className={css.selectPrice} onChange={handleMaxPriceChange}>
-          <option>To $</option>
-          {uniquePrices.map((price, index) => (
-            <option key={index} value={price}>
-              {price}
-            </option>
-          ))}
-        </select>
+        <div className={css.inputcontainer}>
+          <select className={css.selectPrice} onChange={handleMaxPriceChange}>
+            <option>&nbsp;$</option>
+            {uniquePrices.map((price, index) => (
+              <option key={index} value={price}>
+                {price}$
+              </option>
+            ))}
+          </select>
+          <span className={css.priceSpan}>To</span>
+        </div>
       </label>
       <div className={css.inputsContainer}>
         <div className={css.inputs}>
           <label className={css.lable}>
             Car mileage/km:
-            <input
-              className={css.inputMileageLeft}
-              type="number"
-              onChange={handleMinMileageChange}
-              placeholder="From"
-            />
+            <div className={css.inputcontainer}>
+              <input
+                className={css.inputMileageLeft}
+                type="number"
+                onChange={handleMinMileageChange}
+                placeholder=""
+              />
+              <span>From</span>
+            </div>
           </label>
-          <input
-            className={css.inputMileageRight}
-            type="number"
-            onChange={handleMaxMileageChange}
-            placeholder="To"
-          />
+          <div className={css.inputcontainer}>
+            <input
+              className={css.inputMileageRight}
+              type="number"
+              onChange={handleMaxMileageChange}
+              placeholder=""
+            />
+            <span>To</span>
+          </div>
         </div>
         <button className={css.searchButton} onClick={handleSearch}>
           Search
