@@ -10,6 +10,8 @@ const Modal = ({ isOpen, onClose, car }) => {
     model,
     make,
     year,
+    fuelConsumption,
+    engineSize,
     rentalPrice,
     address,
     rentalCompany,
@@ -73,8 +75,8 @@ const Modal = ({ isOpen, onClose, car }) => {
             </h2>
           </div>
           <p className={css.carDetails}>
-            {city} | {country} | {rentalCompany} | {type} | {model} | {mileage}{" "}
-            | {functionalities[0]}
+            {city} | {country} | Id: {id} | Year: {year} | Type: {type} | Fuel
+            Consumption: {fuelConsumption} | Engine Size: {engineSize}
           </p>
           <p> {description}</p>
           <h2 className={css.TitleFunc}> Accessories and functionalities:</h2>
