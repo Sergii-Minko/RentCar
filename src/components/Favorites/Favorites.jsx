@@ -8,6 +8,7 @@ import {
 } from "../../redux/Cars/selectors";
 import { selectFilteredItems } from "../../redux/Filter/selectors";
 import { selectFavoriteItems } from "../../redux/Favorits/selectors";
+import DocumentTitle from "../Title/Title";
 
 import CarItem from "../CarItem/CarItem";
 
@@ -30,6 +31,7 @@ const Favorites = () => {
 
   return (
     <>
+      <DocumentTitle>Favorites Auto</DocumentTitle>
       <div className={css.listContainer}>
         <div className={css.container}>
           <ul className={css.carslist}>
