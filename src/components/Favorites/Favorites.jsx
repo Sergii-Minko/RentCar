@@ -7,6 +7,7 @@ import {
   selectCurrentPage,
 } from "../../redux/Cars/selectors";
 import { selectFilteredItems } from "../../redux/Filter/selectors";
+import { selectFavoriteItems } from "../../redux/Favorits/selectors";
 
 import CarItem from "../CarItem/CarItem";
 
@@ -16,6 +17,7 @@ const Favorites = () => {
   const dispatch = useDispatch();
 
   const filteredItems = useSelector(selectFilteredItems);
+  const favoriteItems = useSelector(selectFavoriteItems);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const currentPage = useSelector(selectCurrentPage);
@@ -31,7 +33,7 @@ const Favorites = () => {
       <div className={css.listContainer}>
         <div className={css.container}>
           <ul className={css.carslist}>
-            {filteredItems.map((car) => (
+            {favoriteItems.map((car) => (
               <CarItem key={car.id} car={car} />
             ))}
           </ul>
