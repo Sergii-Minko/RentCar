@@ -19,8 +19,8 @@
   padding-top: 40px;
   border-radius: 24px;
   max-width: 541px;
-  max-height: 752px;
-  /* max-height: 90%; */
+  height: 752px;
+  max-height: 90%;
   /* overflow-y: auto; */
   position: relative;
 }
@@ -36,8 +36,14 @@
 }
 
 .modalBody {
+  height: auto;
   /* margin-top: 20px; */
   width: 461px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+  gap: 14px;
 }
 .infoDiv {
   display: flex;
@@ -146,8 +152,8 @@
   margin-top: 24px;
   border-radius: 12px;
   padding: 12px 50px;
-  width: 168px;
-  height: 44px;
+  max-width: 168px;
+  max-height: 44px;
   background: #3470ff;
   border: 0;
   font-family: var(--font-family);
