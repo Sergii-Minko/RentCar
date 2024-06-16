@@ -14,7 +14,6 @@ const Modal = ({ isOpen, onClose, car }) => {
     engineSize,
     rentalPrice,
     address,
-    rentalCompany,
     description,
     type,
     mileage,
@@ -22,6 +21,7 @@ const Modal = ({ isOpen, onClose, car }) => {
     accessories,
     rentalConditions,
   } = car;
+  const phoneNumber = "+380730000000";
 
   const [street, city, country] = address.split(",").map((part) => part.trim());
 
@@ -54,10 +54,15 @@ const Modal = ({ isOpen, onClose, car }) => {
   const rentalConditionsString = rentalConditionsItemsSpan.map(
     (element, index) => (
       <React.Fragment key={index}>
-        {index > 0 && " | "} {element}
+        <span className={css.spanrental}>{element}</span>
       </React.Fragment>
     )
   );
+  const formattedNumber = new Intl.NumberFormat("en-US", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(mileage);
+  const currency = rentalPrice.replace("$", "") + "$";
 
   return (
     <div className={css.modalOverlay} onClick={onClose}>
@@ -67,30 +72,38 @@ const Modal = ({ isOpen, onClose, car }) => {
         </button>
         <div className={css.modalBody}>
           <div className={css.itemImg}>
-            <img src={img} alt={model} height="248" />
+            <img src={img} alt={model} width="461" />
           </div>
           <div className={css.infoDiv}>
             <h2 className={css.carTitle}>
-              {make} <span className={css.model}>{model}</span>, {year}
+              {make} <span className={css.span}>{model}</span>, {year}
             </h2>
+            <p className={css.carDetails}>
+              {city} | {country} | Id: {id} | Year: {year} | Type: {type} | Fuel
+              Consumption: {fuelConsumption} | Engine Size: {engineSize}
+            </p>
           </div>
-          <p className={css.carDetails}>
-            {city} | {country} | Id: {id} | Year: {year} | Type: {type} | Fuel
-            Consumption: {fuelConsumption} | Engine Size: {engineSize}
-          </p>
-          <p> {description}</p>
-          <h2 className={css.TitleFunc}> Accessories and functionalities:</h2>
-          <p> {combinedString}</p>
+          <p className={css.carDescription}> {description}</p>
+          <div className={css.infofunc}>
+            <h2 className={css.TitleFunc}> Accessories and functionalities:</h2>
+            <p className={css.carDetails}> {combinedString}</p>
+          </div>
+          <div className={css.inforental}>
+            <h2 className={css.TitleFunc}>Rental Conditions:</h2>
 
-          <h2 className={css.TitleFunc}>Rental Conditions:</h2>
-          <p> {rentalConditionsString}</p>
-          <p>Rental Price: {rentalPrice}</p>
-          <p>
-            Location: {city}, {country}
-          </p>
-          <p>Rental Company: {rentalCompany}</p>
-          <p>Type: {type}</p>
-          <p>Mileage: {mileage}</p>
+            <p className={css.carrental}>
+              {rentalConditionsString}
+              <span className={css.spanrental}>
+                Mileage: <span className={css.span}> {formattedNumber}</span>
+              </span>
+              <span className={css.spanrental}>
+                Price: <span className={css.span}>{currency}</span>
+              </span>
+            </p>
+          </div>
+          <a href={`tel:${phoneNumber}`} className={css.telButton}>
+            Rental car
+          </a>
         </div>
       </div>
     </div>

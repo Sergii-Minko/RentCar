@@ -13,11 +13,14 @@
 
 .modalContent {
   background-color: white;
-  padding: 40px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 40px;
+  padding-top: 40px;
   border-radius: 24px;
-  width: 541px;
-  height: 752px;
-  max-height: 90%;
+  max-width: 541px;
+  max-height: 752px;
+  /* max-height: 90%; */
   /* overflow-y: auto; */
   position: relative;
 }
@@ -33,13 +36,125 @@
 }
 
 .modalBody {
-  margin-top: 20px;
+  /* margin-top: 20px; */
+  width: 461px;
 }
 .infoDiv {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+  width: 277px;
+
+  gap: 8px;
+  margin-bottom: 14 px;
+}
+.itemImg {
+  border-radius: 14px;
+  width: 461px;
+  height: 248px;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  margin-right: 9px;
-  width: 100%;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+.img {
+  width: 469px;
+  height: 314px;
+  object-fit: cover;
+}
+
+.carDetails {
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+  color: rgba(18, 20, 23, 0.5);
+}
+.carTitle {
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 133%;
+  color: #121417;
+}
+.span {
+  font-weight: 600;
+  color: #3470ff;
+}
+.carDescription {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 143%;
+  color: #121417;
+}
+.TitleFunc {
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 143%;
+  color: #121417;
+}
+.spanrental {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+  letter-spacing: -0.02em;
+  color: #363535;
+  background: #f9f9f9;
+  border-radius: 35px;
+  padding: 7px 14px;
+}
+.carrental {
+  padding: 0;
+  margin: 0;
+  width: 461px;
+  /* height: 72px; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-items: center;
+  gap: 8px;
+}
+.inforental {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 24 px;
+}
+.infofunc {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 24 px;
+}
+.telButton {
+  margin-top: 24px;
+  border-radius: 12px;
+  padding: 12px 50px;
+  width: 168px;
+  height: 44px;
+  background: #3470ff;
+  border: 0;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 143%;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
 }
