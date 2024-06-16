@@ -30,7 +30,8 @@ const favoritesSlice = createSlice({
         state.favoritesMapId.push(item.id);
       }
 
-      console.log(state.favoritesItems, state.favoritesMapId);
+       console.log(JSON.stringify(state.favoritesItems));
+       console.log(JSON.stringify(state.favoritesMapId));
     },
     setFavoriteItems(state, action) {
       state.favoritesItems = action.payload;

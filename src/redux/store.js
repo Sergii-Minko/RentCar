@@ -17,7 +17,7 @@ import {
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["favorites", "favoritesfilter"], // Змінено на масив рядків
+  whitelist: ["favorite"], // Змінено на масив рядків
 };
 
 const rootReducer = combineReducers({
@@ -41,7 +41,3 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-
-export const isFavorite = (state, itemId) => {
-  return state.favorites[itemId] || false;
-};
