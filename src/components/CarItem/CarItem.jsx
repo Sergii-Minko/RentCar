@@ -1,11 +1,14 @@
+import React, { useState } from "react";
 import IconHerz from "../IconHerz/IconHerz";
 import css from "./CarItem.module.css";
 import { isFavorite } from "../../redux/Favorits/selectors";
 import { setFavoriteItem } from "../../redux/Favorits/favoritesSlice";
 import { useSelector, useDispatch } from "react-redux";
+import Modal from "../Modal/Modal";
 
 const CarItem = ({ car }) => {
   const dispatch = useDispatch();
+  const [modalOpen, setModalOpen] = useState(false);
 
   const {
     id,
@@ -23,6 +26,15 @@ const CarItem = ({ car }) => {
 
   const [street, city, country] = address.split(",").map((part) => part.trim());
   const Like = useSelector((state) => isFavorite(state, id));
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   const handleFavoriteClick = (e) => {
     e.stopPropagation();
     console.log(e.target.id);
@@ -52,7 +64,10 @@ const CarItem = ({ car }) => {
           {functionalities[0]}
         </p>
       </div>
-      <button className={css.learnMore}>Learn more</button>
+      <button className={css.learnMore} onClick={openModal}>
+        Learn more
+      </button>
+      <Modal isOpen={modalOpen} onClose={closeModal} car={car} />
     </li>
   );
 };

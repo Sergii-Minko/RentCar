@@ -4,7 +4,7 @@
   height: 22px;
   /* top: 16.25px;
   right: 16.25px; */
-  z-index: 1000;
+
   display: inline-block;
   fill: none;
   cursor: pointer;
@@ -35,7 +35,7 @@
   align-items: center;
   width: 21px;
   height: 22px;
-  z-index: 1000;
+  /* z-index: 1000; */
   display: inline-block;
   border: none;
   cursor: pointer;
