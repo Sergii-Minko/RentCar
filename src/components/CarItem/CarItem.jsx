@@ -1,8 +1,12 @@
 import IconHerz from "../IconHerz/IconHerz";
 import css from "./CarItem.module.css";
 import { isFavorite } from "../../redux/Favorits/selectors";
-import { useSelector } from "react-redux";
+import { setFavoriteItem } from "../../redux/Favorits/favoritesSlice";
+import { useSelector, useDispatch } from "react-redux";
+
 const CarItem = ({ car }) => {
+  const dispatch = useDispatch();
+
   const {
     id,
     img,
@@ -19,14 +23,23 @@ const CarItem = ({ car }) => {
 
   const [street, city, country] = address.split(",").map((part) => part.trim());
   const Like = useSelector((state) => isFavorite(state, id));
+  const handleFavoriteClick = (e) => {
+    e.stopPropagation();
+    console.log(e.target.id);
+    dispatch(setFavoriteItem(car));
+    console.log(Like);
+  };
 
   return (
     <li key={id} className={css.itemCar}>
       <div className={css.itemImg}>
-        <IconHerz Like={Like} id={id} />
+        <IconHerz
+          Like={Like}
+          id={id}
+          handleFavoriteClick={handleFavoriteClick}
+        />
         <img src={img} alt={model} height="268" />
       </div>
-
       <div className={css.infoDiv}>
         <div className={css.titleDiv}>
           <h3 className={css.carTitle}>
@@ -35,7 +48,7 @@ const CarItem = ({ car }) => {
           <p className={css.carTitle}>{rentalPrice}</p>
         </div>
         <p className={css.carDetails}>
-          {city} | {country} | {rentalCompany} | {type} | {model} | {mileage} |
+          {city} | {country} | {rentalCompany} | {type} | {model} | {mileage} |{" "}
           {functionalities[0]}
         </p>
       </div>
@@ -43,4 +56,5 @@ const CarItem = ({ car }) => {
     </li>
   );
 };
+
 export default CarItem;

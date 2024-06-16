@@ -1,19 +1,12 @@
 import React from "react";
 import clsx from "clsx";
-import { useDispatch } from "react-redux";
 import css from "./IconHerz.module.css";
-// import svgimage from "../../image/herz.svg";
 
-const IconHerz = (Like, id) => {
-  const dispatch = useDispatch();
-  console.log(Like.Like);
-  const className = clsx(css.baseClass, Like.Like ? css.active : css.disabled);
-  const handleClick = (e) => {
-    e.stopPropagation();
-    console.log(id);
-  };
+const IconHerz = ({ Like, id, handleFavoriteClick }) => {
+  const className = clsx(css.baseClass, Like ? css.active : css.disabled);
+
   return (
-    <button className={css.button} type="button" onClick={handleClick}>
+    <button className={css.button} type="button" onClick={handleFavoriteClick}>
       <svg
         id={id}
         className={className}
