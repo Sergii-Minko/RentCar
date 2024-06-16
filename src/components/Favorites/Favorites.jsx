@@ -6,26 +6,22 @@ import {
   selectError,
   selectCurrentPage,
 } from "../../redux/Cars/selectors";
-import { selectFilteredItems } from "../../redux/Filter/selectors";
+
 import { selectFavoriteItems } from "../../redux/Favorits/selectors";
 import DocumentTitle from "../Title/Title";
 
 import CarItem from "../CarItem/CarItem";
-
 import css from "./Favorites.module.css";
 
 const Favorites = () => {
   const dispatch = useDispatch();
 
-  const filteredItems = useSelector(selectFilteredItems);
   const favoriteItems = useSelector(selectFavoriteItems);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const currentPage = useSelector(selectCurrentPage);
 
   useEffect(() => {
-    console.log(currentPage);
-
     dispatch(fetchCars({ page: currentPage, limit: 12 }));
   }, [dispatch, currentPage]);
 

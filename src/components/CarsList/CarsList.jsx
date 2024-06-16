@@ -29,8 +29,6 @@ const CarsList = () => {
   };
 
   useEffect(() => {
-    console.log(currentPage);
-
     dispatch(fetchCars({ page: currentPage, limit: 12 }));
   }, [dispatch, currentPage]);
 

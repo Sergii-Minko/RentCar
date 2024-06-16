@@ -37,9 +37,8 @@ const CarItem = ({ car }) => {
 
   const handleFavoriteClick = (e) => {
     e.stopPropagation();
-    console.log(e.target.id);
+
     dispatch(setFavoriteItem(car));
-    console.log(Like);
   };
 
   return (

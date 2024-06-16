@@ -7,10 +7,7 @@ import {
   setMileageRangeFilter,
   filterItems,
 } from "../../redux/Filter/filterSlice";
-import {
-  selectMakeFilter,
-  selectMileageRangeFilter,
-} from "../../redux/Filter/selectors";
+import { selectMileageRangeFilter } from "../../redux/Filter/selectors";
 import {
   selectUniquePrices,
   selectMaxPrice,
@@ -23,7 +20,6 @@ import makes from "../../Data/makes";
 const SearchBox = () => {
   const dispatch = useDispatch();
   const items = useSelector(selectAllCars);
-  const makeFilter = useSelector(selectMakeFilter);
   const uniquePrices = useSelector(selectUniquePrices);
   const maxPrice = useSelector(selectMaxPrice);
   const mileageRangeFilter = useSelector(selectMileageRangeFilter);
@@ -65,9 +61,6 @@ const SearchBox = () => {
 
   const handleSearch = () => {
     dispatch(filterItems(items));
-  };
-  const generateSpaces = (count) => {
-    return "&nbsp;".repeat(count);
   };
 
   return (
